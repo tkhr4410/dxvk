@@ -55,7 +55,7 @@ dep_displayinfo = dependency(
   default_options: ['default_library=static'],
 )
 
-if platform == 'windows'
+if platform == 'windows' and not get_option('dxvk_native')
   dxvk_so_version = {'name_prefix': ''}
 
   compiler_args += [
@@ -136,16 +136,30 @@ else
     endif
     dxvk_version += [ padded ]
   endforeach
-  dxvk_so_version = {'version': dxvk_abi_version + '.' + dxvk_version[0] + dxvk_version[1] + dxvk_version[2]}
+  if platform == 'windows'
+    dxvk_so_version = {'name_prefix': ''}
+  else
+    dxvk_so_version = {'version': dxvk_abi_version + '.' + dxvk_version[0] + dxvk_version[1] + dxvk_version[2]}
+  endif
 
   wrc           = find_program('touch')
   wrc_generator = generator(wrc, output : [ '@BASENAME@_ignored.h' ], arguments : [ '@OUTPUT@' ] )
 
-  dxvk_include_dirs += [
-    './include/native',
-    './include/native/windows',
-    './include/native/directx'
-  ]
+  if platform == 'windows'
+    dxvk_include_dirs += [
+      './include/native'
+    ]
+    compiler_args += [
+      '-DNOMINMAX',
+      '-D_WIN32_WINNT=0xa00',
+    ]
+  else
+    dxvk_include_dirs += [
+      './include/native',
+      './include/native/windows',
+      './include/native/directx'
+    ]
+  endif
 
   lib_sdl3 = dependency('sdl3', required: get_option('native_sdl3'))
   lib_sdl2 = dependency('sdl2', required: get_option('native_sdl2'))
@@ -167,6 +181,7 @@ else
   dxvk_pkg_prefix = 'dxvk-'
 
   link_args += [
+    '-static',
     '-static-libgcc',
     '-static-libstdc++',
   ]

@@ -52,7 +52,7 @@ d3d9_src = [
 d3d9_ld_args      = []
 d3d9_link_depends = []
 
-if platform != 'windows'
+if platform != 'windows' or get_option('dxvk_native')
   d3d9_ld_args      += [ '-Wl,--version-script', join_paths(meson.current_source_dir(), 'd3d9.sym') ]
   d3d9_link_depends += files('d3d9.sym')
 endif
@@ -61,7 +61,7 @@ d3d9_dll = shared_library(dxvk_name_prefix+'d3d9', d3d9_src, glsl_generator.proc
   dependencies        : [ dxso_dep, dxvk_dep ],
   include_directories : dxvk_include_path,
   install             : true,
-  vs_module_defs      : 'd3d9'+def_spec_ext,
+  vs_module_defs      : dxvk_name_prefix+'d3d9'+def_spec_ext,
   link_args           : d3d9_ld_args,
   link_depends        : [ d3d9_link_depends ],
   kwargs              : dxvk_so_version,

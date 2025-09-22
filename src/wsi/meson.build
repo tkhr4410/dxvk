@@ -17,7 +17,7 @@ wsi_src = [
 
 wsi_deps = [ dep_displayinfo ]
 
-if platform == 'windows'
+if platform == 'windows' and not get_option('dxvk_native')
   lib_setupapi = cpp.find_library('setupapi')
   wsi_deps += [ lib_setupapi ]
 else
