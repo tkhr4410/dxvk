@@ -714,7 +714,7 @@ namespace dxvk {
       ENABLE_FEATURE(core.features, fillModeNonSolid, true),
       ENABLE_FEATURE(core.features, fragmentStoresAndAtomics, false),
       ENABLE_FEATURE(core.features, fullDrawIndexUint32, true),
-      ENABLE_FEATURE(core.features, geometryShader, true),
+      ENABLE_FEATURE(core.features, geometryShader, false),
       ENABLE_FEATURE(core.features, imageCubeArray, true),
       ENABLE_FEATURE(core.features, independentBlend, true),
       ENABLE_FEATURE(core.features, logicOp, false),
@@ -726,7 +726,7 @@ namespace dxvk {
       ENABLE_FEATURE(core.features, sampleRateShading, true),
       ENABLE_FEATURE(core.features, samplerAnisotropy, false),
       ENABLE_FEATURE(core.features, shaderClipDistance, true),
-      ENABLE_FEATURE(core.features, shaderCullDistance, true),
+      ENABLE_FEATURE(core.features, shaderCullDistance, false),
       ENABLE_FEATURE(core.features, shaderFloat64, false),
       ENABLE_FEATURE(core.features, shaderImageGatherExtended, true),
       ENABLE_FEATURE(core.features, shaderInt16, false),
@@ -837,9 +837,9 @@ namespace dxvk {
       ENABLE_EXT_FEATURE(extPageableDeviceLocalMemory, pageableDeviceLocalMemory, false),
 
       /* Robustness, all features effectively required for correctness */
-      ENABLE_EXT_FEATURE(extRobustness2, robustBufferAccess2, true),
+      ENABLE_EXT_FEATURE(extRobustness2, robustBufferAccess2, false),
       ENABLE_EXT_FEATURE(extRobustness2, robustImageAccess2, false),
-      ENABLE_EXT_FEATURE(extRobustness2, nullDescriptor, true),
+      ENABLE_EXT_FEATURE(extRobustness2, nullDescriptor, false),
 
       /* Shader module identifier, used for pipeline lifetime management in 32-bit */
       ENABLE_EXT_FEATURE(extShaderModuleIdentifier, shaderModuleIdentifier, false),
@@ -875,7 +875,7 @@ namespace dxvk {
       ENABLE_EXT_FEATURE(khrMaintenance7, maintenance7, false),
 
       /* Dependency for graphics pipeline library */
-      ENABLE_EXT(khrPipelineLibrary, true),
+      ENABLE_EXT(khrPipelineLibrary, false),
 
       /* Present wait, used for frame pacing and statistics */
       ENABLE_EXT_FEATURE(khrPresentId, presentId, false),

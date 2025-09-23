@@ -10,8 +10,10 @@ d3d10_core_link_depends = []
 if platform == 'windows' and not get_option('dxvk_native')
   d3d10_d3d11_dep = lib_d3d11
 else
-  d3d10_core_ld_args      += [ '-Wl,--version-script', join_paths(meson.current_source_dir(), 'd3d10core.sym') ]
-  d3d10_core_link_depends += files('d3d10core.sym')
+  if platform != 'darwin'
+    d3d10_core_ld_args      += [ '-Wl,--version-script', join_paths(meson.current_source_dir(), 'd3d10core.sym') ]
+    d3d10_core_link_depends += files('d3d10core.sym')
+  endif
   d3d10_d3d11_dep = d3d11_dep
 endif
 

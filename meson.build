@@ -26,6 +26,7 @@ compiler_args = [
   '-Wno-extern-c-compat',
   '-Wno-unused-const-variable',
   '-Wno-missing-braces',
+  '-U_LIBCPP_ENABLE_ASSERTIONS',
 ]
 
 link_args = []

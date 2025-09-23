@@ -134,6 +134,14 @@ namespace dxvk::bit {
     #endif
   }
 
+  inline uint32_t tzcnt(size_t n) {
+    #if ULONG_MAX > UINT_MAX
+    return tzcnt((uint64_t)n);
+    #else
+    return tzcnt((uint32_t)n);
+    #endif
+  }
+
   inline uint32_t bsf(uint32_t n) {
     #if (defined(__GNUC__) || defined(__clang__)) && !defined(__BMI__) && defined(DXVK_ARCH_X86)
     uint32_t res;
@@ -201,6 +209,14 @@ namespace dxvk::bit {
     uint32_t lo = uint32_t(n);
     uint32_t hi = uint32_t(n >> 32u);
     return hi ? lzcnt(hi) : lzcnt(lo) + 32u;
+    #endif
+  }
+
+  inline uint32_t lzcnt(size_t n) {
+    #if ULONG_MAX > UINT_MAX
+    return lzcnt((uint64_t)n);
+    #else
+    return lzcnt((uint32_t)n);
     #endif
   }
 
