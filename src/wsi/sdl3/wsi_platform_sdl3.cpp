@@ -4,6 +4,7 @@
 #include "../../util/util_error.h"
 #include "../../util/util_string.h"
 #include "../../util/util_win32_compat.h"
+#include "../../util/log/log.h"
 
 #include <SDL3/SDL_vulkan.h>
 
