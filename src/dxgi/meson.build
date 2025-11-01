@@ -23,7 +23,7 @@ if platform != 'windows'
   endif
 endif
 
-dxgi_dll = shared_library(dxvk_name_prefix+'dxgi', dxgi_src, dxgi_res,
+dxgi_dll = both_libraries(dxvk_name_prefix+'dxgi', dxgi_src, dxgi_res,
   dependencies        : [ dxvk_dep ],
   include_directories : dxvk_include_path,
   install             : true,

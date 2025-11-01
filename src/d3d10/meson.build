@@ -17,7 +17,7 @@ else
   d3d10_d3d11_dep = d3d11_dep
 endif
 
-d3d10_core_dll = shared_library(dxvk_name_prefix+'d3d10core', d3d10_core_src, d3d10_core_res,
+d3d10_core_dll = both_libraries(dxvk_name_prefix+'d3d10core', d3d10_core_src, d3d10_core_res,
   dependencies        : [ d3d10_d3d11_dep ],
   include_directories : dxvk_include_path,
   install             : true,
